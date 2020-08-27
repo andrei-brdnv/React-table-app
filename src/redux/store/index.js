@@ -1,10 +1,12 @@
 import {createStore, combineReducers, applyMiddleware, compose} from "redux";
 import dataReducer from "../reducers/dataReducer";
-import generateId from '../middleware/generate-id'
-import logger from '../middleware/logger'
+import generateId from "../middleware/generate-id";
+import logger from "../middleware/logger";
+import filtersReducer from "../reducers/filtersReducer";
 
 const reducer = combineReducers({
-    data: dataReducer
+    data: dataReducer,
+    filters: filtersReducer
 })
 
 const composeEnhancers =

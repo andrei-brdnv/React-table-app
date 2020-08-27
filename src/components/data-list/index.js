@@ -1,15 +1,17 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import dataReducer from "../../redux/reducers/dataReducer";
 import DataItem from "../data-item";
+import {filteredDataSelector} from "../../selectors";
 
 class DataList extends Component {
     render() {
+        console.log('render data list')
         const {data} = this.props
         // console.log(data)
-        const dataList = data.map(dataItem =>
+        const dataList = data.map((dataItem, i) =>
             <div key={dataItem.id}>
                 <DataItem
+                    i={i}
                     dataItem={dataItem}
                 />
             </div>
@@ -24,7 +26,7 @@ class DataList extends Component {
 }
 
 const mapStateToProps = store => ({
-    data: store.data
+    data: filteredDataSelector(store)
 })
 
 export default connect(mapStateToProps)(DataList)

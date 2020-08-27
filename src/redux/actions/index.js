@@ -1,4 +1,4 @@
-import {ADD_DATA_ITEM, DELETE_DATA_ITEM} from "../types";
+import {ADD_DATA_ITEM, CHANGE_SELECTION, DELETE_DATA_ITEM, EDIT_DATA_ITEM} from "../types";
 
 export const addDataItem = (dataItem) => {
     return {
@@ -14,3 +14,15 @@ export const deleteDataItem = (id) => {
         payload: {id}
     }
 }
+
+export const editDataItem = (id, editedValue) => {
+    return {
+        type: EDIT_DATA_ITEM,
+        payload: {id, editedValue}
+    }
+}
+
+export const changeSelection = (selected) => ({
+    type: CHANGE_SELECTION,
+    payload: {selected}
+})

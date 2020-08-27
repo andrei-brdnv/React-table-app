@@ -11,6 +11,7 @@ class DataForm extends Component {
     }
 
     render() {
+        console.log('render data form')
         return (
             <form onSubmit={this.handleSubmit} className="flex-container">
                 <div className="flex-item">
@@ -44,10 +45,6 @@ class DataForm extends Component {
         )
     }
 
-    handleColorChange = (color) => {
-        this.setState({color: color.hex})
-    };
-
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addDataItem(this.state)
@@ -62,6 +59,10 @@ class DataForm extends Component {
         this.setState({
             [type]: value
         })
+    }
+
+    handleColorChange = (color) => {
+        this.setState({color: color.hex})
     }
 }
 
