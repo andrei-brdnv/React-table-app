@@ -8,17 +8,16 @@ class DataList extends Component {
         console.log('render data list')
         const {data} = this.props
         // console.log(data)
-        const dataList = data.map((dataItem, i) =>
+        const dataList = data.map((dataItem) =>
             <div key={dataItem.id}>
                 <DataItem
-                    i={i}
                     dataItem={dataItem}
                 />
             </div>
         )
 
         return (
-            <div>
+            <div className="list-container">
                 {dataList}
             </div>
         );

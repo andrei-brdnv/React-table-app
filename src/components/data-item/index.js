@@ -2,6 +2,8 @@ import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import {deleteDataItem, editDataItem} from "../../redux/actions";
 import ColorPicker from "../color-picker";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 class DataItem extends Component {
     state = {
@@ -32,19 +34,33 @@ class DataItem extends Component {
 
     renderItem() {
         console.log('render data item basic')
-        const {dataItem, i} = this.props
+        const {dataItem} = this.props
         return (
             <div className="flex-container">
-                <div className="flex-item">{i + 1}</div>
-                <div className="flex-item">{dataItem.name}</div>
-                <div className="flex-item">{dataItem.type}</div>
-                <div className="flex-item">{dataItem.color}</div>
+                <div className="flex-item flex-item__rendered">{dataItem.name}</div>
+                <div className="flex-item flex-item__rendered">{dataItem.type}</div>
                 <div className="flex-item">
-                    <button onClick={this.handleEdit}>edit</button>
-                    <button onClick={this.handleDelete}>delete</button>
+                    {/*<CopyToClipboard text={this.hexToRgb(dataItem.color)}>
+                        <div onClick={this.hexToRgb(dataItem.color)}>Click: {this.hexToRgb(dataItem.color)}</div>
+                    </CopyToClipboard>*/}
+                    <CopyToClipboard text={dataItem.color}>
+                        <div className="flex-item flex-item__color" style={{background: dataItem.color}}></div>
+                    </CopyToClipboard>
+                </div>
+                <div className="flex-item">
+                    <span>
+                        <FontAwesomeIcon className="faicons icon-edit" onClick={this.handleEdit} icon="edit" />
+                    </span>
+                    <span>
+                        <FontAwesomeIcon className="faicons icon-delete" onClick={this.handleDelete} icon="trash-alt" />
+                    </span>
                 </div>
             </div>
         );
+    }
+
+    hexToRgb = (hex) => {
+        return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
     }
 
     handleEdit = () => {
@@ -62,19 +78,22 @@ class DataItem extends Component {
             <form onSubmit={this.handleSubmit} className="flex-container">
                 <div className="flex-item">
                     <input
+                        className="input"
                         value={this.state.name}
                         onChange={this.handleChange('name')}
                         placeholder="name..."
+                        autofocus="true"
                     />
                 </div>
                 <div className="flex-item">
                     <input
+                        className="input"
                         value={this.state.type}
                         onChange={this.handleChange('type')}
                         placeholder="type..."
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item flex-item__color">
                     <ColorPicker
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
@@ -82,7 +101,7 @@ class DataItem extends Component {
                 </div>
                 <div className="flex-item">
                     <button
-                        className=""
+                        className="btn btn-confirm"
                     >
                         Confirm
                     </button>
@@ -93,9 +112,9 @@ class DataItem extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const {dataItem, i} = this.props
+        const {dataItem} = this.props
         this.setState({isEditing: !this.state.isEditing})
-        this.props.editDataItem(i, dataItem.id, this.state)
+        this.props.editDataItem(dataItem.id, this.state)
     }
 
     handleChange = (type) => (event) => {

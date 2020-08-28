@@ -13,9 +13,10 @@ class DataForm extends Component {
     render() {
         console.log('render data form')
         return (
-            <form onSubmit={this.handleSubmit} className="flex-container">
+            <form onSubmit={this.handleSubmit} className="flex-container flex-container__form">
                 <div className="flex-item">
                     <input
+                        className="input"
                         value={this.state.name}
                         onChange={this.handleChange('name')}
                         placeholder="name..."
@@ -23,12 +24,13 @@ class DataForm extends Component {
                 </div>
                 <div className="flex-item">
                     <input
+                        className="input"
                         value={this.state.type}
                         onChange={this.handleChange('type')}
                         placeholder="type..."
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item flex-item__color">
                     <ColorPicker
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
@@ -36,7 +38,7 @@ class DataForm extends Component {
                 </div>
                 <div className="flex-item">
                     <button
-                        className=""
+                        className="btn btn-add"
                     >
                         Add
                     </button>
@@ -66,11 +68,6 @@ class DataForm extends Component {
     }
 }
 
-/*
-const mapDispatchToProps = dispatch => ({
-    addDataItem: (dataItem) => dispatch(addDataItem(dataItem))
-})
-*/
 
 export default connect(
     null,
