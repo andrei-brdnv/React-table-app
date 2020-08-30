@@ -32,22 +32,7 @@ body {
   padding: 0;
 }
 
-.input {
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  font-size: 16px;
-  font-family: 'Work Sans', sans-serif;
-  padding: 2px 8px;
-  outline: none;
-  border: none;
-}
-
-.input:focus {
-  padding: 2px 8px 2px 6px;
-  border: 2px solid #2684ff;
-}
-
+.input,
 .input__error {
   width: 100%;
   height: 30px;
@@ -56,7 +41,17 @@ body {
   font-family: 'Work Sans', sans-serif;
   padding: 2px 8px;
   border: none;
-  outline-color: red;
+  outline: none;
+}
+
+.input:focus {
+  padding: 2px 8px 2px 6px;
+  border: 2px solid #2684ff;
+}
+
+.input__error:focus {
+  padding: 2px 8px 2px 6px;
+  border: 2px solid #d32f2f;
 }
 
 .select {
@@ -301,6 +296,41 @@ p:hover {
 .copy-rgb-value:hover span {
   display: inline;
   text-align: center;
+}
+
+
+/* pick color hint */
+
+.pick-color-hint {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  top: 0;
+  left: 0;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 10px;
+  pointer-events: none;
+}
+
+.pick-color-hint:hover {
+  background-color: transparent;
+  border: 1px solid #212121;
+}
+
+.pick-color-hint span {
+  display: inline;
+  text-align: center;
+  color: white;
 }
 
 @media all and (min-width: 600px) {

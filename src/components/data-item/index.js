@@ -108,6 +108,11 @@ class DataItem extends Component {
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
                     />
+                    <div
+                        className="pick-color-hint"
+                    >
+                        <span>Click to change color</span>
+                    </div>
                 </div>
                 <div className="flex-item__four">
                     <button

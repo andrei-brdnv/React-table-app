@@ -3,7 +3,8 @@ import { SketchPicker } from "react-color";
 
 class ColorPicker extends React.Component {
     state = {
-        displayColorPicker: false
+        displayColorPicker: false,
+        isShown: false
     }
 
     handleClick = () => {
@@ -22,6 +23,7 @@ class ColorPicker extends React.Component {
         console.log('render ColorPicker')
         const styles = {
             color: {
+                display: 'block',
                 height: '30px',
                 borderRadius: '4px',
                 background: `${this.props.color}`,
@@ -45,7 +47,7 @@ class ColorPicker extends React.Component {
                 bottom: '0px',
                 left: '0px',
             },
-        };
+        }
 
         return (
             <div>
