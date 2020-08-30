@@ -4,14 +4,9 @@ import Select from "react-select";
 import {changeSelection} from "../../redux/actions";
 
 const customStyles = {
-    container: (provided, state) => ({
-        ...provided,
-    }),
     control: (provided, state) => ({
         ...provided,
-        /*margin: '0 auto',*/
         borderRadius: '0',
-        flexWrap: 'nowrap'
     })
 }
 

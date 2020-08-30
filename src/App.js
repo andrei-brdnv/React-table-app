@@ -11,11 +11,12 @@ library.add(faTrashAlt, faEdit)
 class App extends Component {
     render() {
         return (
-            <div className="container">
-                <SelectFilter />
-                <DataForm />
-                <hr className="hr"/>
-                <DataList />
+            <div className="flex-container">
+                <SelectFilter/>
+                <hr className="hr hr__select"/>
+                <DataForm/>
+                <hr className="hr hr__form"/>
+                <DataList/>
             </div>
         )
     }

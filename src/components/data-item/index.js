@@ -2,15 +2,17 @@ import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
 import {deleteDataItem, editDataItem} from "../../redux/actions";
 import ColorPicker from "../color-picker";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class DataItem extends Component {
     state = {
         name: '',
         type: '',
         color: '',
-        isEditing: false
+        colorRgb: '',
+        isEditing: false,
+        copied: false
     }
 
     mapDataToState = () => {
@@ -19,11 +21,11 @@ class DataItem extends Component {
             name: dataItem.name ? dataItem.name : '',
             type: dataItem.type ? dataItem.type : '',
             color: dataItem.color ? dataItem.color : '',
+            colorRgb: dataItem.colorRgb ? dataItem.colorRgb : ''
         })
     }
 
     render() {
-
         const {isEditing} = this.state
         return (
             <Fragment>
@@ -36,34 +38,42 @@ class DataItem extends Component {
         console.log('render data item basic')
         const {dataItem} = this.props
         return (
-            <div className="flex-container">
-                <div className="flex-item flex-item__rendered">{dataItem.name}</div>
-                <div className="flex-item flex-item__rendered">{dataItem.type}</div>
-                <div className="flex-item">
-                    {/*<CopyToClipboard text={this.hexToRgb(dataItem.color)}>
-                        <div onClick={this.hexToRgb(dataItem.color)}>Click: {this.hexToRgb(dataItem.color)}</div>
-                    </CopyToClipboard>*/}
-                    <CopyToClipboard text={dataItem.color}>
-                        <div className="flex-item flex-item__color" style={{background: dataItem.color}}></div>
+            <div className="flex-container__form">
+                <div className="flex-item__one">
+                    <p>{dataItem.name}</p>
+                </div>
+                <div className="flex-item__two">
+                    <p>{dataItem.type}</p>
+                </div>
+                <div className="flex-item__three" style={{background: dataItem.color}}>
+                    <CopyToClipboard text={dataItem.color} onCopy={() => this.setState({copied: true})}>
+                        <div className="copy-hex-value">
+                            {this.state.copied ? <span>Copied</span> : <span>Copy hex value to clipboard</span>}
+                        </div>
+                    </CopyToClipboard>
+                    <CopyToClipboard text={dataItem.colorRgb} onCopy={() => this.setState({copied: true})}>
+                        <div className="copy-rgb-value">
+                            {this.state.copied ? <span>Copied</span> : <span>Copy rgb value to clipboard</span>}
+                        </div>
                     </CopyToClipboard>
                 </div>
-                <div className="flex-item">
-                    <span>
-                        <FontAwesomeIcon className="faicons icon-edit" onClick={this.handleEdit} icon="edit" />
-                    </span>
-                    <span>
-                        <FontAwesomeIcon className="faicons icon-delete" onClick={this.handleDelete} icon="trash-alt" />
-                    </span>
+                <div className="flex-item__four">
+                    <div className="faicon">
+                        <FontAwesomeIcon className="icon-edit" onClick={this.handleEdit} icon="edit"/>
+                        <FontAwesomeIcon className="icon-delete" onClick={this.handleDelete} icon="trash-alt"/>
+                    </div>
                 </div>
             </div>
         );
     }
 
     hexToRgb = (hex) => {
-        return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
+        console.log('hexToRgb')
+        const rgb = ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
     }
 
     handleEdit = () => {
+        console.log('handle edit')
         this.setState({isEditing: !this.state.isEditing})
         this.mapDataToState()
     }
@@ -75,17 +85,17 @@ class DataItem extends Component {
     renderForm() {
         console.log('render data item form')
         return (
-            <form onSubmit={this.handleSubmit} className="flex-container">
-                <div className="flex-item">
+            <form onSubmit={this.handleSubmit} className="flex-container__form">
+                <div className="flex-item__one">
                     <input
                         className="input"
                         value={this.state.name}
                         onChange={this.handleChange('name')}
                         placeholder="name..."
-                        autofocus="true"
+                        autoFocus={true}
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item__two">
                     <input
                         className="input"
                         value={this.state.type}
@@ -93,13 +103,13 @@ class DataItem extends Component {
                         placeholder="type..."
                     />
                 </div>
-                <div className="flex-item flex-item__color">
+                <div className="flex-item__three">
                     <ColorPicker
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item__four">
                     <button
                         className="btn btn-confirm"
                     >

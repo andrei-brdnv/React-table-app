@@ -13,8 +13,8 @@ class DataForm extends Component {
     render() {
         console.log('render data form')
         return (
-            <form onSubmit={this.handleSubmit} className="flex-container flex-container__form">
-                <div className="flex-item">
+            <form onSubmit={this.handleSubmit} className="flex-container__form">
+                <div className="flex-item__one">
                     <input
                         className="input"
                         value={this.state.name}
@@ -22,7 +22,7 @@ class DataForm extends Component {
                         placeholder="name..."
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item__two">
                     <input
                         className="input"
                         value={this.state.type}
@@ -30,13 +30,13 @@ class DataForm extends Component {
                         placeholder="type..."
                     />
                 </div>
-                <div className="flex-item flex-item__color">
+                <div className="flex-item__three">
                     <ColorPicker
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
                     />
                 </div>
-                <div className="flex-item">
+                <div className="flex-item__four">
                     <button
                         className="btn btn-add"
                     >
@@ -67,7 +67,6 @@ class DataForm extends Component {
         this.setState({color: color.hex})
     }
 }
-
 
 export default connect(
     null,

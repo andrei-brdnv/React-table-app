@@ -3,6 +3,7 @@ import dataReducer from "../reducers/dataReducer";
 import generateId from "../middleware/generate-id";
 import logger from "../middleware/logger";
 import filtersReducer from "../reducers/filtersReducer";
+import hexToRgb from "../middleware/hexToRgb";
 
 const reducer = combineReducers({
     data: dataReducer,
@@ -17,7 +18,7 @@ const composeEnhancers =
         }) : compose;
 
 const enhancer = composeEnhancers(
-    applyMiddleware(generateId, logger),
+    applyMiddleware(generateId, logger, hexToRgb),
     // other store enhancers if any
 );
 
