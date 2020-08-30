@@ -322,11 +322,6 @@ p:hover {
   pointer-events: none;
 }
 
-.pick-color-hint:hover {
-  background-color: transparent;
-  border: 1px solid #212121;
-}
-
 .pick-color-hint span {
   display: inline;
   text-align: center;
