@@ -11,12 +11,12 @@ class DataForm extends Component {
     }
 
     render() {
-        console.log('render data form')
+        console.log('render DataForm')
         return (
             <form onSubmit={this.handleSubmit} className="flex-container__form">
                 <div className="flex-item__one">
                     <input
-                        className="input"
+                        className={this.getClassName('name')}
                         value={this.state.name}
                         onChange={this.handleChange('name')}
                         placeholder="name..."
@@ -24,7 +24,7 @@ class DataForm extends Component {
                 </div>
                 <div className="flex-item__two">
                     <input
-                        className="input"
+                        className={this.getClassName('type')}
                         value={this.state.type}
                         onChange={this.handleChange('type')}
                         placeholder="type..."
@@ -39,6 +39,7 @@ class DataForm extends Component {
                 <div className="flex-item__four">
                     <button
                         className="btn btn-add"
+                        disabled={!this.isValidForm()}
                     >
                         Add
                     </button>
@@ -46,6 +47,12 @@ class DataForm extends Component {
             </form>
         )
     }
+
+    isValidForm = () => ['name', 'type'].every(this.isValidField)
+
+    isValidField = (type) => this.state[type].length >= limits[type].min
+
+    getClassName = (type) => (this.isValidField(type) ? 'input' : 'input__error')
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -58,6 +65,7 @@ class DataForm extends Component {
 
     handleChange = (type) => (event) => {
         const {value} = event.target
+        if (value.length > limits[type].max) return
         this.setState({
             [type]: value
         })
@@ -65,6 +73,17 @@ class DataForm extends Component {
 
     handleColorChange = (color) => {
         this.setState({color: color.hex})
+    }
+}
+
+const limits = {
+    name: {
+        min: 3,
+        max: 30
+    },
+    type: {
+        min: 3,
+        max: 30
     }
 }
 

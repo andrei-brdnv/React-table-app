@@ -22,10 +22,8 @@ class DataList extends Component {
     };
 
     render() {
-        console.log('render data list')
+        console.log('render DataList')
         const {data} = this.props
-        console.log(this.props.data)
-        // console.log(data)
         return (
             <div>
                 <DragDropContext onDragEnd={this.onDragEnd}>
@@ -69,13 +67,16 @@ class DataList extends Component {
 }
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-    background: isDragging ? "linear-gradient(to left, transparent, #4db6ac 15%, #4db6ac 85%, transparent 100%)" : "transparent",
+    background: isDragging
+        ? "linear-gradient(to left, transparent, #ffca28 20%, #ffca28 80%, transparent 100%)"
+        : "transparent",
     ...draggableStyle
-    /*linear-gradient(to right, transparent, transparent 2%, #d7f0a2 2%, #d7f0a2 98%, transparent 98%)*/
 });
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "linear-gradient(to left, transparent, #dce775 15%, #dce775 85%, transparent 100%)" : "transparent"
+    background: isDraggingOver
+        ? "linear-gradient(to left, transparent, #c5cae9 20%, #c5cae9 80%, transparent 100%)"
+        : "transparent"
 });
 
 const mapStateToProps = store => ({

@@ -12,8 +12,8 @@ class App extends Component {
     render() {
         return (
             <div className="flex-container">
+                <h1 className="h1">React-table-app</h1>
                 <SelectFilter/>
-                <hr className="hr hr__select"/>
                 <DataForm/>
                 <hr className="hr hr__form"/>
                 <DataList/>

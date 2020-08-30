@@ -19,7 +19,7 @@ class ColorPicker extends React.Component {
     };
 
     render() {
-        console.log('render color picker')
+        console.log('render ColorPicker')
         const styles = {
             color: {
                 height: '30px',

@@ -28,14 +28,14 @@ class DataItem extends Component {
     render() {
         const {isEditing} = this.state
         return (
-            <Fragment>
+            <div>
                 {isEditing ? this.renderForm() : this.renderItem()}
-            </Fragment>
+            </div>
         )
     }
 
     renderItem() {
-        console.log('render data item basic')
+        console.log('render DataItem')
         const {dataItem} = this.props
         return (
             <div className="flex-container__form">
@@ -83,12 +83,12 @@ class DataItem extends Component {
     }
 
     renderForm() {
-        console.log('render data item form')
+        console.log('render DataItem editing form')
         return (
             <form onSubmit={this.handleSubmit} className="flex-container__form">
                 <div className="flex-item__one">
                     <input
-                        className="input"
+                        className={this.getClassName('name')}
                         value={this.state.name}
                         onChange={this.handleChange('name')}
                         placeholder="name..."
@@ -97,7 +97,7 @@ class DataItem extends Component {
                 </div>
                 <div className="flex-item__two">
                     <input
-                        className="input"
+                        className={this.getClassName('type')}
                         value={this.state.type}
                         onChange={this.handleChange('type')}
                         placeholder="type..."
@@ -112,6 +112,7 @@ class DataItem extends Component {
                 <div className="flex-item__four">
                     <button
                         className="btn btn-confirm"
+                        disabled={!this.isValidForm()}
                     >
                         Confirm
                     </button>
@@ -119,6 +120,12 @@ class DataItem extends Component {
             </form>
         )
     }
+
+    isValidForm = () => ['name', 'type'].every(this.isValidField)
+
+    isValidField = (type) => this.state[type].length >= limits[type].min
+
+    getClassName = (type) => (this.isValidField(type) ? 'input' : 'input__error')
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -129,6 +136,7 @@ class DataItem extends Component {
 
     handleChange = (type) => (event) => {
         const {value} = event.target
+        if (value.length > limits[type].max) return
         this.setState({
             [type]: value
         })
@@ -136,6 +144,17 @@ class DataItem extends Component {
 
     handleColorChange = (color) => {
         this.setState({color: color.hex})
+    }
+}
+
+const limits = {
+    name: {
+        min: 3,
+        max: 30
+    },
+    type: {
+        min: 3,
+        max: 30
     }
 }
 

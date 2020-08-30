@@ -4,11 +4,21 @@ import generateId from "../middleware/generate-id";
 import logger from "../middleware/logger";
 import filtersReducer from "../reducers/filtersReducer";
 import hexToRgb from "../middleware/hexToRgb";
+import {persistStore, persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const reducer = combineReducers({
     data: dataReducer,
     filters: filtersReducer
 })
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['data', 'filters']
+}
+
+const rootReducer = persistReducer(persistConfig, reducer)
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -18,8 +28,9 @@ const composeEnhancers =
         }) : compose;
 
 const enhancer = composeEnhancers(
-    applyMiddleware(generateId, logger, hexToRgb),
+    applyMiddleware(generateId, logger, hexToRgb)
     // other store enhancers if any
 );
 
-export const store = createStore(reducer, enhancer)
+export const store = createStore(rootReducer, enhancer)
+export const persistor = persistStore(store)

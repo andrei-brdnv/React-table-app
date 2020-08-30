@@ -12,6 +12,7 @@ const customStyles = {
 
 class SelectFilter extends Component {
     render() {
+        console.log('render SelectFilter')
         return (
             <div className="select">
                 <Select
