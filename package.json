@@ -1,6 +1,6 @@
 {
-  "homepage": "https://andrei-brdnv.github.io/react-table-app",
-  "name": "react-table-app",
+  "homepage": "https://andrei-brdnv.github.io/Table-app",
+  "name": "Table-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
