@@ -77,15 +77,17 @@ class DataList extends Component {
 
 const getItemStyle = (isDragging, draggableStyle) => ({
     background: isDragging
-        ? "linear-gradient(to left, transparent, #ebe8e5 30%, #ebe8e5 70%, transparent 100%)"
+        ? "#fff59d"
         : "transparent",
     ...draggableStyle
+    /*"linear-gradient(to left, transparent, #fff59d 10%, #fff59d 90%, transparent 100%)"*/
 });
 
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver
-        ? "linear-gradient(to left, #ebe8e5, #757575 30%, #757575 70%, #ebe8e5 100%)"
+        ? "#bdbdbd"
         : "transparent"
+    /*"linear-gradient(to left, transparent, #bdbdbd 10%, #bdbdbd 90%, transparent 100%)"*/
 });
 
 const mapStateToProps = store => ({
