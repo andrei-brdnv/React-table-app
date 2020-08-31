@@ -238,6 +238,10 @@ p:hover {
   outline: none;
 }
 
+.btn:focus {
+  outline: none;
+}
+
 .btn-add {
   background-color: #81c784;
   -webkit-tap-highlight-color: transparent;
@@ -508,6 +512,10 @@ p:hover {
 
   .btn {
     margin-right: 0;
+  }
+
+  .btn:focus {
+    outline: none;
   }
 
   .btn-confirm:before {
