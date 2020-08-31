@@ -104,6 +104,11 @@ body {
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: 0;
+  outline: none;
+}
+
 .h1 {
   padding-bottom: 10px;
   font-size: 26px;
@@ -512,10 +517,6 @@ p:hover {
 
   .btn {
     margin-right: 0;
-  }
-
-  .btn:focus {
-    outline: none;
   }
 
   .btn-confirm:before {
