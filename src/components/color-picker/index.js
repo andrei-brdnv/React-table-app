@@ -24,8 +24,8 @@ class ColorPicker extends React.Component {
         const styles = {
             color: {
                 display: 'flex',
-                height: '30px',
-                borderRadius: '4px',
+                height: '40px',
+                borderRadius: '10px',
                 background: `${this.props.color}`,
             },
             /*swatch: {

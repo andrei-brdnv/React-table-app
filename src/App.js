@@ -12,7 +12,7 @@ class App extends Component {
     render() {
         return (
             <div className="flex-container">
-                <h1 className="h1">React-table-app</h1>
+                <h1 className="h1">App-name</h1>
                 <SelectFilter/>
                 <DataForm/>
                 <hr className="hr hr__form"/>

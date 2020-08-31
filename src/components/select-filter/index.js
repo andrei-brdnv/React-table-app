@@ -34,6 +34,10 @@ class SelectFilter extends Component {
     }
 
     handleSelectChange = (selectedOption) => {
+        if (selectedOption === null) {
+            selectedOption = [];
+        }
+
         this.props.changeSelection(selectedOption)
     }
 }
