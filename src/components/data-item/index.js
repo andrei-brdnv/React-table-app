@@ -108,9 +108,7 @@ class DataItem extends Component {
                         color={this.state.color}
                         onColorChange={this.handleColorChange}
                     />
-                    <div
-                        className="pick-color-hint"
-                    >
+                    <div className="pick-color-hint">
                         <span>Click to change color</span>
                     </div>
                 </div>
@@ -155,11 +153,11 @@ class DataItem extends Component {
 const limits = {
     name: {
         min: 3,
-        max: 30
+        max: 25
     },
     type: {
         min: 3,
-        max: 30
+        max: 25
     }
 }
 

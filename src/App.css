@@ -9,6 +9,7 @@ body {
   font-size: 16px;
   font-family: 'Work Sans', sans-serif;
   background: #ebe8e5;
+  overflow-y:scroll
 }
 
 *,
@@ -19,6 +20,7 @@ body {
 }
 
 .h1 {
+  font-size: 24px;
   transition: all .2s linear;
 }
 
@@ -104,6 +106,9 @@ body {
   transition: all .2s linear;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  white-space: pre-wrap;
+  -moz-white-space: pre-wrap;
+  hyphens: auto;
 }
 
 p:hover {
@@ -316,7 +321,7 @@ p:hover {
   height: 30px;
   top: 0;
   left: 0;
-  font-size: 10px;
+  font-size: 12px;
   font-family: 'Roboto', sans-serif;
   line-height: 10px;
   pointer-events: none;
@@ -329,6 +334,10 @@ p:hover {
 }
 
 @media all and (min-width: 600px) {
+  .h1 {
+    font-size: 36px;
+  }
+
   .hr {
     display: none;
   }
@@ -384,8 +393,6 @@ p:hover {
     margin: 0 5px;
     height: 30px;
     line-height: 30px;
-    width: 100%;
-    max-width: 260px;
     /*background-color: lightpink;*/
   }
 

@@ -23,7 +23,7 @@ class ColorPicker extends React.Component {
         console.log('render ColorPicker')
         const styles = {
             color: {
-                display: 'block',
+                display: 'flex',
                 height: '30px',
                 borderRadius: '4px',
                 background: `${this.props.color}`,

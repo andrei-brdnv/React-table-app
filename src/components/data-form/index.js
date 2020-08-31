@@ -84,11 +84,11 @@ class DataForm extends Component {
 const limits = {
     name: {
         min: 3,
-        max: 30
+        max: 25
     },
     type: {
         min: 3,
-        max: 30
+        max: 25
     }
 }
 
